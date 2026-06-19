@@ -280,3 +280,28 @@ p {
     background: white;
     border-radius: 50%;
 }
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 34px;
+        margin-top: 30px;
+    }
+
+    p {
+        font-size: 22px;
+        width: 90%;
+        margin: 20px auto 0;
+        line-height: 1.5;
+    }
+
+    .solar-system {
+        position: absolute;
+        left: 50%;
+        top: 52%;
+
+        width: 85vmin;
+        height: 85vmin;
+
+        transform: translate(-50%, -50%) rotate(-35deg) scale(1.05);
+    }
+}
