@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>太阳系</title>
+    <link rel="stylesheet" href="solar.css">
+</head>
+<body>
+    <audio id="bgm" loop>
+    <source src="music/theshire.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="stars"></div>
+    <a id="back-btn" href="#">← 返回地球</a>
+
+    <h1>太阳系</h1>
+    <p>夜晚从地球上抬头看向星空，想起了小时候老爸你带我去的天文馆……</p>
+
+    <div class="solar-system">
+        <div class="sun"></div>
+
+        <div class="orbit orbit1">
+            <div class="planet mercury"></div>
+        </div>
+
+        <div class="orbit orbit2">
+            <div class="planet venus"></div>
+        </div>
+
+        <div class="orbit orbit3">
+            <div class="planet earth"></div>
+        </div>
+
+        <div class="orbit orbit4">
+            <div class="planet mars"></div>
+        </div>
+
+        <div class="orbit orbit5">
+            <div class="planet jupiter"></div>
+        </div>
+
+        <div class="orbit orbit6">
+            <div class="planet saturn"></div>
+        </div>
+
+        <div class="orbit orbit7">
+            <div class="planet uranus"></div>
+        </div>
+
+        <div class="orbit orbit8">
+            <div class="planet neptune"></div>
+        </div>
+    </div>
+
+    <script>
+const bgm = document.getElementById("bgm");
+
+bgm.addEventListener("loadedmetadata", () => {
+    const savedTime = localStorage.getItem("musicTime");
+
+    if (savedTime) {
+        bgm.currentTime = parseFloat(savedTime);
+        bgm.play();
+    }
+});
+
+document.getElementById("back-btn").onclick = (e) => {
+    e.preventDefault();
+
+    localStorage.setItem("musicTime", bgm.currentTime);
+    localStorage.setItem("musicShouldPlay", "true");
+    sessionStorage.setItem("skipIntro", "true");
+
+    window.location.href = "index.html";
+};
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 300; i++) {
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    const size = Math.random() * 3;
+
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.opacity = Math.random();
+
+    stars.appendChild(star);
+}
+</script>
+
+</body>
+</html>

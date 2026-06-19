@@ -1,0 +1,282 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a2a4a, #030712);
+    color: white;
+    text-align: center;
+    font-family: "Songti SC", serif;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 55px;
+    color:#3c87ff;
+}
+
+p {
+    font-size: 40px;
+    color: rgba(155, 195, 255, 0.75);
+}
+
+#back-btn {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    color: white;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.solar-system {
+    position: relative;
+    width: 800px;
+    height: 800px;
+
+    margin: 100px auto;
+
+    transform: rotate(-35deg) scale(0.75);
+}
+
+.sun {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 90px;
+    height: 90px;
+
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #fffdf0 0%,
+            #ffe082 25%,
+            #ffca28 55%,
+            #ff9800 80%,
+            #e65100 100%
+        );
+
+    box-shadow:
+        inset -10px -10px 20px rgba(0,0,0,0.15),
+        0 0 30px #ffd54f,
+        0 0 60px #ffca28,
+        0 0 120px #ff9800,
+        0 0 180px rgba(255,165,0,0.6);
+
+    position: absolute;
+    z-index: 2;
+}
+
+.sun::before {
+    content: "";
+
+    position: absolute;
+    inset: -25px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(255,220,100,0.4),
+        rgba(255,150,0,0.15),
+        transparent 75%
+    );
+
+    z-index: 0;
+}
+
+.orbit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    border: 1px solid rgba(172, 162, 162, 0.491);
+    border-radius: 50%;
+
+    transform-style: preserve-3d;
+
+    animation: rotate linear infinite;
+}
+
+.orbit1 {
+    width: 360px;
+    height: 140px;
+    animation-duration: 5s;
+}
+
+.orbit2 {
+    width: 560px;
+    height: 220px;
+    animation-duration: 8s;
+}
+
+.orbit3 {
+    width: 800px;
+    height: 320px;
+    animation-duration: 12s;
+}
+
+.orbit4 {
+    width: 1080px;
+    height: 440px;
+    animation-duration: 18s;
+}
+
+.orbit5 {
+    width: 1360px;
+    height: 560px;
+    animation-duration: 28s;
+}
+
+.orbit6 {
+    width: 1640px;
+    height: 680px;
+    animation-duration: 38s;
+}
+
+.orbit7 {
+    width: 1920px;
+    height: 800px;
+    animation-duration: 50s;
+}
+
+.orbit8 {
+    width: 2200px;
+    height: 920px;
+    animation-duration: 65s;
+}
+
+.planet {
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow:
+        inset -4px -4px 8px rgba(0,0,0,0.45),
+        inset 3px 3px 6px rgba(255,255,255,0.35),
+        0 0 12px rgba(255,255,255,0.35);
+}
+
+.mercury {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #9b9b9b 45%, #4b4b4b);
+}
+
+.venus {
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle at 30% 30%, #fff3c4, #d9a85c 50%, #6b3f1d);
+    box-shadow:
+        inset -5px -5px 10px rgba(0,0,0,0.45),
+        0 0 16px rgba(244,194,122,0.8);
+}
+
+.earth {
+    width: 18px;
+    height: 18px;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), transparent 22%),
+        radial-gradient(circle at 65% 55%, #3fbf7f 0 18%, transparent 19%),
+        radial-gradient(circle at 35% 65%, #2aa36b 0 14%, transparent 15%),
+        radial-gradient(circle at 55% 40%, #4cc9f0 0, #1d72b8 65%, #063b73);
+    box-shadow:
+        inset -5px -5px 10px rgba(0,0,0,0.5),
+        0 0 18px #4cc9f0;
+}
+
+.mars {
+    width: 14px;
+    height: 14px;
+    background:
+        radial-gradient(circle at 30% 30%, #ffd1a3, transparent 20%),
+        radial-gradient(circle at 65% 55%, #7a2e1c 0 15%, transparent 16%),
+        radial-gradient(circle at 40% 60%, #b8492f, #5c1c14);
+    box-shadow:
+        inset -5px -5px 9px rgba(0,0,0,0.5),
+        0 0 14px #e76f51;
+}
+
+.jupiter {
+    width: 28px;
+    height: 28px;
+    background:
+        linear-gradient(
+            to bottom,
+            #f6d7a7,
+            #c7864a 22%,
+            #f2c88d 35%,
+            #8f5a34 50%,
+            #e7b06b 65%,
+            #6b3f28
+        );
+    box-shadow:
+        inset -7px -7px 12px rgba(0,0,0,0.5),
+        0 0 18px #d9a066;
+}
+
+.saturn {
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle at 30% 30%, #fff1c7, #d7b56d 55%, #6d5532);
+    box-shadow:
+        inset -6px -6px 10px rgba(0,0,0,0.5),
+        0 0 16px #e8d49a;
+}
+
+.saturn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 42px;
+    height: 12px;
+    border: 2px solid rgba(232,212,154,0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+}
+
+.uranus {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #8ee8ff 45%, #227c9d);
+    box-shadow:
+        inset -5px -5px 10px rgba(0,0,0,0.45),
+        0 0 16px #8ee8ff;
+}
+
+.neptune {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #c8ddff, #4b7bec 50%, #112f91);
+    box-shadow:
+        inset -5px -5px 10px rgba(0,0,0,0.45),
+        0 0 16px #4b7bec;
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+#stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
