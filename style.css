@@ -2,20 +2,24 @@ body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    background:
-    radial-gradient(circle at center, rgba(120, 190, 255, 0.55), transparent 55%),
-    #081326;
+
+    background-image: url("https://unpkg.com/three-globe/example/img/night-sky.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     color: white;
     text-align: center;
     font-family: Arial, sans-serif;
 }
 
 h1 {
-    margin-top: 20px;
-    margin-bottom: 8px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 5px;
     font-size: 55px;
-    font-family: "Long Cang", cursive;
     color:rgb(164, 238, 255);
+    font-family: "Long Cang", cursive;
 }
 
 p {
@@ -23,25 +27,30 @@ p {
 
     color: rgba(255,255,255,0.75);
 
-    font-size: 25px;
+    font-size: 35px;
 
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     position: relative;
-    top: 12px;
+    top: -10px;
 }
 
 #globe-container {
     width: 100%;
-    height: 73vh;
+    height: 72vh;
+    margin-top: -40px;
 }
 
 #story-box {
-    width: 50%;
-    height: 150px;
+    width: 80%;
+    height: 230px;
 
+    position: relative;
     margin: 0 auto;
+    top: -80px;
+    z-index: 100;
+
 
     display: flex;
     flex-direction: column;
@@ -75,11 +84,46 @@ p {
     backdrop-filter: blur(8px);
 
     color: white;
-    font-size: 35px;
+    font-size: 30px;
 
     cursor: pointer;
 
     z-index: 9999;
+}
+
+.default-story-title {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.default-story-subtitle {
+    font-size: 24px;
+    opacity: 0.8;
+}
+
+.story-back-btn {
+
+    position: absolute;
+
+    top: 8px;
+    left: 8px;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 999;
 }
 
 .city-marker {
@@ -129,7 +173,7 @@ p {
 
     color: white;
     font-family: "Songti SC", "STSong", serif;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     white-space: nowrap;
     text-shadow: 0 0 10px black;
@@ -152,15 +196,9 @@ p {
 
 .story-text {
     font-family: "Songti SC", "STSong", serif;
-    font-size: 30px;
+    font-size: 35px;
     color: white;
     line-height: 1.7;
-}
-
-.story-hint {
-    font-size: 14px;
-    color: #bdbdbd;
-    margin-bottom: 14px;
 }
 
 #solar-btn {
@@ -168,7 +206,7 @@ p {
     top: 180px;
     right: 30px;
 
-    padding: 30px 50px;
+    padding: 20px 30px;
 
     border-radius: 999px;
     border: none;
@@ -176,7 +214,7 @@ p {
     background: rgba(255,215,0,0.18);
     color: white;
 
-    font-size: 30px;
+    font-size: 25px;
     font-family: "Songti SC", "STSong", serif;
 
     cursor: pointer;
@@ -193,6 +231,7 @@ p {
 
 .sub-buttons button {
     padding: 6px 14px;
+    font-size: 30px;
     border-radius: 999px;
     border: 1px solid rgba(255,255,255,0.4);
     background: rgba(255,255,255,0.12);
@@ -250,6 +289,7 @@ p {
 
 .photo-btn {
     margin-top: 12px;
+    font-size: 30px;
     padding: 7px 16px;
     border-radius: 999px;
     border: 1px solid rgba(255,255,255,0.4);
@@ -260,9 +300,9 @@ p {
 
 .inline-photo-btn {
 
-    margin-left: 8px;
+    margin-left: 12px;
 
-    padding: 2px 8px;
+    padding: 8px 20px;
 
     border-radius: 999px;
 
@@ -272,7 +312,7 @@ p {
 
     color: white;
 
-    font-size: 13px;
+    font-size: 20px;
 
     cursor: pointer;
 
@@ -320,9 +360,9 @@ p {
 
     text-align: center;
 
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.85);
 
-    font-size: 14px;
+    font-size: 20px;
 
     letter-spacing: 1px;
 
@@ -449,13 +489,13 @@ p {
 
 .start-title {
     font-family: "Songti SC", "STSong", serif;
-    font-size: 34px;
+    font-size: 50px;
     margin-bottom: 24px;
     letter-spacing: 3px;
 }
 
 #start-btn {
-    padding: 10px 22px;
+    padding: 15px 30px;
 
     border-radius: 999px;
     border: 1px solid rgba(255,255,255,0.4);
@@ -463,26 +503,222 @@ p {
     background: rgba(255,255,255,0.1);
     color: white;
 
-    font-size: 18px;
+    font-size: 25px;
     cursor: pointer;
 }
 
-@media (max-width: 600px) {
+#music-hint {
+    position: fixed;
+
+    bottom: 0px;
+    right: 40px;
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 30px;
+
+    font-family: "Songti SC", "STSong", serif;
+
+    z-index: 9999;
+
+    text-align: center;
+}
+
+@media (min-width: 601px) {
+
     #story-box {
-        position: fixed;
-        bottom: 110px;
-        left: 50%;
+        width: 60%;
+        min-height: 30px;
+        height: auto;
 
-        transform: translateX(-50%);
+        top: 0px;
+    }
 
-        width: 70%;
-        height: 120px;
+    .story-title {
+        font-size: 30px;
+    }
 
-        z-index: 999;
+    .story-text {
+        font-size: 20px;
+    }
+
+    .city-marker span {
+        font-size: 16px;
+    }
+
+    #globe-container {
+        height: 65vh;
+    }
+}
+
+@media (min-width: 601px) {
+
+    .sub-buttons button {
+        font-size: 18px;
+        padding: 6px 14px;
+    }
+
+    h1 {
+    font-size: 42px;
+    margin-top: 25px;
+    }
+
+    p {
+    font-size: 24px;
+    }
+
+    .photo-btn {
+        font-size: 18px;
+        padding: 6px 14px;
+    }
+
+    .inline-photo-btn {
+        font-size: 14px;
+        padding: 4px 10px;
+    }
+
+    .story-back-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+
+    #pause-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    #solar-btn {
+        font-size: 18px;
+        padding: 12px 20px;
     }
 
     #music-btn {
-        bottom: 115px;
-        right: 25px;
+        width: 120px;
+        height: 120px;
+    }
+
+    #music-hint {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 601px) {
+
+    .default-story-title {
+        font-size: 26px;
+    }
+
+    .default-story-subtitle {
+        font-size: 18px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 35px;
+        left: 20px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    position: relative;
+    top: 0px;
+    }
+
+    p {
+    font-size: 15px;
+
+    margin-top: -10px;
+    margin-bottom: 20px;
+    left: 10px;
+
+    position: relative;
+    top: 0px;
+    }
+
+    .default-story-title {
+        font-size: 20px;
+    }
+
+    .default-story-subtitle {
+        font-size: 15px;
+    }
+
+    .story-title {
+        font-size: 30px;
+    }
+
+    .story-text {
+        font-size: 15px;
+    }
+
+    .city-marker span {
+        font-size: 15px;
+    }
+
+    .sub-buttons button {
+        font-size: 10px;
+    }
+
+    .photo-btn {
+        font-size: 10px;
+    }
+
+    .inline-photo-btn {
+        font-size: 10px !important;
+
+        padding: 8px 10px !important;
+
+        margin-left: 10px !important;
+    }
+
+    #music-hint {
+    font-size: 10px !important;
+    right: 30px !important;
+    bottom: 30px !important;
+    }
+
+    #music-btn {
+    width: 60px;
+    height: 60px;
+    right: 20px !important;
+    bottom: 40px !important;
+    }
+
+    .start-title {
+        font-size: 20px;
+    }
+
+    #start-btn {
+        font-size: 20px;
+    }
+
+    #pause-btn {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 10px !important;
+        padding: 5px 5px ! important;
+        top: 70px !important;
+        right: 25px !important;
+    }
+
+    #story-box {
+    width: 80% !important;
+    height: 100px !important;
+
+    top: -90px !important;
+    }
+
+    #solar-btn {
+        font-size: 10px !important;
+
+        padding: 5px 10px !important;
+
+        top: 105px !important;
+        right: 15px !important;
     }
 }

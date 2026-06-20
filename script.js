@@ -1,14 +1,14 @@
 const world = Globe()
     .globeImageUrl("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
-    .backgroundImageUrl("https://unpkg.com/three-globe/example/img/night-sky.png")
+    .backgroundColor("rgba(0,0,0,0)")
     .width(window.innerWidth)
-    .height(window.innerHeight * 0.7)
+    .height(window.innerHeight * 0.72)
     (document.getElementById("globe-container"));
 
 world.pointOfView({
     lat: 35,
     lng: 115,
-    altitude: 2
+    altitude: window.innerWidth <= 600 ? 1.9 : 1.5
 });
 
 world
@@ -111,8 +111,15 @@ const places = [
         name: "济南",
         lat: 36.6512,
         lng: 117.1201,
-        story: "我记得我们还去爬泰山了，可惜找不到照片了",
-        color: "#FFD700"
+        story: "我记得我们去爬泰山了，爷爷帮我找到照片了！",
+        color: "#FFD700",
+
+        images: [
+            "images/jinan1.JPG",
+            "images/jinan2.JPG",
+            "images/jinan3.JPG",
+            "images/jinan4.JPG"
+        ]
     },
     {
         name: "悉尼",
@@ -309,12 +316,26 @@ world.controls().autoRotateSpeed = 0.2;
 world.controls().minDistance = 80;
 world.controls().maxDistance = 1000;
 
+let lastGroupName = null;
+
+function goBackStory() {
+    if (lastGroupName) {
+        const group = places.find(p => p.name === lastGroupName);
+        lastGroupName = null;
+        showStory(group);
+    } else {
+        resetStory();
+    }
+}
+
+window.goBackStory = goBackStory;
 
 function showStory(d) {
     const storyBox = document.getElementById("story-box");
 
     if (d.subPlaces) {
         storyBox.innerHTML = `
+            <button class="story-back-btn" onclick="goBackStory()">←</button>
             <div class="story-title">${d.name}</div>
 
             <div class="story-text">
@@ -337,15 +358,18 @@ function showStory(d) {
         `;
     } else {
         storyBox.innerHTML = `
+            <button class="story-back-btn" onclick="goBackStory()">←</button>
             <div class="story-title">${d.name}</div>
 
             <div class="story-text">${d.story}</div>
 
-            ${
-                d.images
-                ? `<button class="photo-btn" onclick="showPhotos('${d.name}')">查看照片</button>`
-                : ""
-            }
+            <div class="sub-buttons">
+                ${
+                    d.images
+                    ? `<button onclick="showPhotos('${d.name}')">查看照片</button>`
+                    : ""
+                }
+            </div>
         `;
     }
 
@@ -353,11 +377,33 @@ function showStory(d) {
     document.getElementById("pause-btn").innerText = "▶";
 }
 
+function resetStory() {
+    const storyBox = document.getElementById("story-box");
+
+    storyBox.innerHTML = `
+        <div class="default-story">
+            <div class="default-story-title">
+                提示：点击地点，记忆加载中～
+            </div>
+
+            <div class="default-story-subtitle">
+                转动地球仪，可手动看位置
+            </div>
+        </div>
+    `;
+}
+
+window.resetStory = resetStory;
+
 function showSubStory(groupName, index) {
+    lastGroupName = groupName;
+
     const group = places.find(place => place.name === groupName);
     const sub = group.subPlaces[index];
 
     document.getElementById("story-box").innerHTML = `
+        <button class="story-back-btn" onclick="goBackStory()">←</button>
+
         <div class="story-title">${sub.name}</div>
 
         <div class="story-text">
@@ -382,6 +428,13 @@ function showSubStory(groupName, index) {
         </div>
     `;
 }
+
+function backToGroup(groupName) {
+    const group = places.find(p => p.name === groupName);
+    showStory(group);
+}
+
+window.backToGroup = backToGroup;
 
 function showSubPhotos(groupName, index) {
     const group = places.find(place => place.name === groupName);
@@ -509,22 +562,38 @@ const bgm = document.getElementById("bgm");
 
 let isPlaying = false;
 
+// 刷新/返回后恢复音乐时间
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    bgm.currentTime = parseFloat(savedTime);
+}
+
+// 如果之前音乐是播放状态，就尝试继续播放
 if (localStorage.getItem("musicShouldPlay") === "true") {
     document.getElementById("start-screen").style.display = "none";
-
-    const savedTime = localStorage.getItem("musicTime");
-
-    if (savedTime) {
-        bgm.currentTime = parseFloat(savedTime);
-    }
 
     bgm.play().then(() => {
         musicBtn.classList.add("playing");
         isPlaying = true;
     }).catch(() => {
-        console.log("浏览器拦截了返回后的自动播放");
+        console.log("浏览器拦截了刷新后的自动播放");
     });
 }
+
+// 每秒保存音乐进度
+setInterval(() => {
+    localStorage.setItem("musicTime", bgm.currentTime);
+}, 1000);
+
+// 记录播放/暂停状态
+bgm.addEventListener("play", () => {
+    localStorage.setItem("musicShouldPlay", "true");
+});
+
+bgm.addEventListener("pause", () => {
+    localStorage.setItem("musicShouldPlay", "false");
+});
 
 musicBtn.addEventListener("click", () => {
 
@@ -564,6 +633,8 @@ if (sessionStorage.getItem("skipIntro")) {
 
         bgm.play();
 
+        localStorage.setItem("musicShouldPlay", "true");
+
         musicBtn.classList.add("playing");
 
         isPlaying = true;
@@ -575,6 +646,8 @@ startBtn.addEventListener("click", () => {
     startScreen.style.display = "none";
 
     bgm.play();
+
+    localStorage.setItem("musicShouldPlay", "true");
 
     musicBtn.classList.add("playing");
 

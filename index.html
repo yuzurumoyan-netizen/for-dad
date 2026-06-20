@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>一份礼物</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=999">
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <link rel="preload" href="music/theshire.mp3" as="audio">
 </head>
@@ -22,10 +23,14 @@
         希望在我回去的时候你已经瘦了哈哈哈哈
     </p>
 
+    <button id="music-btn"></button>
+
+    <div id="music-hint">
+      🎵 点击唱片
+    </div>
+
     <button id="pause-btn">⏸</button>
     <button id="solar-btn">点击进入太阳系 ✨</button>
-
-    <button id="music-btn"></button>
 
     <audio id="bgm" loop>
     <source src="music/theshire.mp3" type="audio/mpeg">
@@ -34,8 +39,16 @@
     <div id="globe-container"></div>
 
     <div id="story-box">
-        提示：点击地点，记忆加载中～转动地球仪，可手动看位置
+    <div class="default-story">
+        <div class="default-story-title">
+            提示：点击地点，记忆加载中～
+        </div>
+
+        <div class="default-story-subtitle">
+            可转动放大缩小地球
+        </div>
     </div>
+</div>
 
     <div id="photo-modal" class="hidden">
         <div class="modal-content">

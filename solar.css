@@ -33,9 +33,9 @@ p {
     width: 800px;
     height: 800px;
 
-    margin: 100px auto;
+    margin: 20px auto;
 
-    transform: rotate(-35deg) scale(0.75);
+    transform: rotate(-12deg) scale(1.15);
 }
 
 .sun {
@@ -43,8 +43,8 @@ p {
     left: 50%;
     top: 50%;
 
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
 
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -93,68 +93,69 @@ p {
     left: 50%;
     top: 50%;
 
-    border: 1px solid rgba(172, 162, 162, 0.491);
+    border: 1px solid rgba(255,255,255,0.45);
     border-radius: 50%;
 
-    transform-style: preserve-3d;
+    transform: translate(-50%, -50%);
 
-    animation: rotate linear infinite;
+    animation: none !important;
 }
 
 .orbit1 {
-    width: 360px;
-    height: 140px;
+    width: 180px;
+    height: 70px;
     animation-duration: 5s;
 }
 
 .orbit2 {
-    width: 560px;
-    height: 220px;
+    width: 280px;
+    height: 110px;
     animation-duration: 8s;
 }
 
 .orbit3 {
-    width: 800px;
-    height: 320px;
+    width: 400px;
+    height: 160px;
     animation-duration: 12s;
 }
 
 .orbit4 {
-    width: 1080px;
-    height: 440px;
+    width: 540px;
+    height: 220px;
     animation-duration: 18s;
 }
 
 .orbit5 {
-    width: 1360px;
-    height: 560px;
+    width: 680px;
+    height: 280px;
     animation-duration: 28s;
 }
 
 .orbit6 {
-    width: 1640px;
-    height: 680px;
+    width: 820px;
+    height: 340px;
     animation-duration: 38s;
 }
 
 .orbit7 {
-    width: 1920px;
-    height: 800px;
+    width: 960px;
+    height: 400px;
     animation-duration: 50s;
 }
 
 .orbit8 {
-    width: 2200px;
-    height: 920px;
+    width: 1100px;
+    height: 460px;
     animation-duration: 65s;
 }
 
+
 .planet {
     position: absolute;
-    left: 50%;
-    top: -6px;
     border-radius: 50%;
-    transform: translateX(-50%);
+
+    transform: translate(-50%, -50%);
+
     box-shadow:
         inset -4px -4px 8px rgba(0,0,0,0.45),
         inset 3px 3px 6px rgba(255,255,255,0.35),
@@ -258,16 +259,6 @@ p {
         0 0 16px #4b7bec;
 }
 
-@keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
 #stars {
     position: fixed;
     inset: 0;
@@ -281,27 +272,97 @@ p {
     border-radius: 50%;
 }
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 34px;
-        margin-top: 30px;
+#solar-music-btn {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background: rgba(255,255,255,0.12);
+    color: white;
+
+    font-size: 14px;
+    font-family: "Songti SC", serif;
+
+    z-index: 99999;
+}
+
+#solar-story {
+    position: fixed;
+
+    top: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 60%;
+
+    padding: 14px 20px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    color: rgba(156, 224, 255, 0.85);
+
+    font-family: "Songti SC", "STSong", serif;
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    z-index: 20;
+}
+
+@media screen and (max-width: 600px) {
+    #solar-story {
+        top: 70px;
+        margin-left: -20px;
+        width: 70%;
+        font-size: 15px;
+        padding: 5px 10px;
     }
 
-    p {
-        font-size: 22px;
-        width: 90%;
-        margin: 20px auto 0;
-        line-height: 1.5;
+    #back-btn {
+        top: 22px;
+        left: 18px;
+        font-size: 15px;
     }
 
     .solar-system {
-        position: absolute;
-        left: 50%;
-        top: 52%;
+        position: absolute !important;
+        left: 50% !important;
+        top: 58% !important;
 
-        width: 85vmin;
-        height: 85vmin;
+        width: 100vmin !important;
+        height: 100vmin !important;
 
-        transform: translate(-50%, -50%) rotate(-35deg) scale(1.05);
+        margin: 0 !important;
+
+        transform: translate(-50%, -50%) rotate(150deg) scale(0.7) !important;
     }
+
+    .sun {
+        width: 48px;
+        height: 48px;
+    }
+
+    .sun::before {
+        inset: -12px;
+    }
+
+    .orbit1 { width: 95px !important; height: 38px !important; }
+    .orbit2 { width: 145px !important; height: 58px !important; }
+    .orbit3 { width: 205px !important; height: 82px !important; }
+    .orbit4 { width: 275px !important; height: 112px !important; }
+    .orbit5 { width: 345px !important; height: 142px !important; }
+    .orbit6 { width: 415px !important; height: 172px !important; }
+    .orbit7 { width: 485px !important; height: 202px !important; }
+    .orbit8 { width: 555px !important; height: 232px !important; }
 }
